@@ -1,0 +1,1178 @@
+import React from "react";
+import ReactDOM from "react-dom";
+
+ReactDOM.render(
+  <div>
+    <h1>My Favourite Foods</h1>
+    <ul>
+      <li>Bacon</li>
+      <li>Noodles</li>
+      <li>Jamon</li>
+    </ul>
+  </div>,
+  document.getElementById("root")
+);
+---------------------------------------------------------------------------------
+import React from "react";
+import ReactDOM from "react-dom";
+
+const name = "Angela";
+const currentDate = new Date();
+const year = currentDate.getFullYear();
+
+ReactDOM.render(
+  <div>
+    <p>Created by {name}</p>
+    <p>Copyright {year}</p>
+  </div>,
+  document.getElementById("root")
+);
+---------------------------------------------------------------------------------
+import React from "react";
+import ReactDOM from "react-dom";
+
+const customStyle = {
+  color: "red",
+  fontSize: "20px",
+  border: "1px solid black"
+};
+
+customStyle.color = "blue";
+
+ReactDOM.render(
+  <h1 style={customStyle}>Hello World!</h1>,
+  document.getElementById("root")
+);
+---------------------------------------------------------------------------------
+//Create a React app from scratch.
+//Show a single h1 that says "Good morning" if between midnight and 12PM.
+//or "Good Afternoon" if between 12PM and 6PM.
+//or "Good evening" if between 6PM and midnight.
+//Apply the "heading" style in the styles.css
+//Dynamically change the color of the h1 using inline css styles.
+//Morning = red, Afternoon = green, Night = blue.
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+const date = new Date();
+const currentTime = date.getHours();
+
+let greeting;
+
+const customStyle = {
+  color: ""
+};
+
+if (currentTime < 12) {
+  greeting = "Good Morning";
+  customStyle.color = "red";
+} else if (currentTime < 18) {
+  greeting = "Good Afternoon";
+  customStyle.color = "green";
+} else {
+  greeting = "Good Night";
+  customStyle.color = "blue";
+}
+
+ReactDOM.render(
+  <h1 className="heading" style={customStyle}>
+    {greeting}
+  </h1>,
+  document.getElementById("root")
+);
+---------------------------------------------------------------------------------
+import React from "react";
+import ReactDOM from "react-dom";
+
+const date = new Date();
+const currentTime = date.getHours();
+
+let greeting;
+
+const customStyle = {
+  color: ""
+};
+
+if (currentTime < 12) {
+  greeting = "Good Morning";
+  customStyle.color = "red";
+} else if (currentTime < 18) {
+  greeting = "Good Afternoon";
+  customStyle.color = "green";
+} else {
+  greeting = "Good Night";
+  customStyle.color = "blue";
+}
+
+ReactDOM.render(
+  <h1 className="heading" style={customStyle}>
+    {greeting}
+  </h1>,
+  document.getElementById("root")
+);
+
+---------------------------------------------------------------------------------
+import React from "react";
+import ReactDOM from "react-dom";
+import { add, subtract, multiply, divide } from "./calculator";
+
+//Import the add, multiply, subtract and divide functions
+//from the calculator.js file.
+//If successful, your website should look the same as the Final.png
+
+ReactDOM.render(
+  <ul>
+    <li>{add(1, 2)}</li>
+    <li>{multiply(2, 3)}</li>
+    <li>{subtract(7, 2)}</li>
+    <li>{divide(5, 2)}</li>
+  </ul>,
+  document.getElementById("root")
+);
+
+---------------------------------------------------------------------------------
+import React from "react";
+import Card from "./Card";
+import contacts from "../contacts";
+
+function App() {
+  return (
+    <div>
+      <h1 className="heading">My Contacts</h1>
+      <Card
+        name={contacts[0].name}
+        img={contacts[0].imgURL}
+        tel={contacts[0].phone}
+        email={contacts[0].email}
+      />
+      <Card
+        name={contacts[1].name}
+        img={contacts[1].imgURL}
+        tel={contacts[1].phone}
+        email={contacts[1].email}
+      />
+      <Card
+        name={contacts[2].name}
+        img={contacts[2].imgURL}
+        tel={contacts[2].phone}
+        email={contacts[2].email}
+      />
+    </div>
+  );
+}
+
+export default App;
+
+---------------------------------------------------------------------------------
+import React from "react";
+import Card from "./Card";
+import contacts from "../contacts";
+import Avatar from "./Avatar";
+
+function App() {
+  return (
+    <div>
+      <h1 className="heading">My Contacts</h1>
+      <Avatar img="https://pbs.twimg.com/profile_images/744849215675838464/IH0FNIXk.jpg" />
+      <Card
+        name={contacts[0].name}
+        img={contacts[0].imgURL}
+        tel={contacts[0].phone}
+        email={contacts[0].email}
+      />
+      <Card
+        name={contacts[1].name}
+        img={contacts[1].imgURL}
+        tel={contacts[1].phone}
+        email={contacts[1].email}
+      />
+      <Card
+        name={contacts[2].name}
+        img={contacts[2].imgURL}
+        tel={contacts[2].phone}
+        email={contacts[2].email}
+      />
+    </div>
+  );
+}
+
+export default App;
+
+---------------------------------------------------------------------------------
+import React from "react";
+import Card from "./Card";
+import contacts from "../contacts";
+
+function createCard(contact) {
+  return (
+    <Card
+      key={contact.id}
+      name={contact.name}
+      img={contact.imgURL}
+      tel={contact.phone}
+      email={contact.email}
+    />
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <h1 className="heading">My Contacts</h1>
+      {contacts.map(createCard)}
+
+      {/* <Card
+        name={contacts[0].name}
+        img={contacts[0].imgURL}
+        tel={contacts[0].phone}
+        email={contacts[0].email}
+      />
+      <Card
+        name={contacts[1].name}
+        img={contacts[1].imgURL}
+        tel={contacts[1].phone}
+        email={contacts[1].email}
+      />
+      <Card
+        name={contacts[2].name}
+        img={contacts[2].imgURL}
+        tel={contacts[2].phone}
+        email={contacts[2].email}
+      /> */}
+    </div>
+  );
+}
+
+export default App;
+
+---------------------------------------------------------------------------------
+import React from "react";
+import Entry from "./Entry";
+import emojipedia from "../emojipedia";
+
+//1. Extract the repeated parts of the App into a Entry component.
+//2. Use props to make the Entry component render different data.
+//3a. Import the emojipedia constant.
+//3b. Map through the emojipedia array and render Entry components.
+
+//Emojipedia has 3 entries, so createEntry gets called 3 times.
+//Each time, it passes 1 item from the emojipedia array as a var called emojiTerm.
+
+//var emojiTerm = {
+//   id: 1,
+//   emoji: "💪",
+//   name: "Tense Biceps",
+//   meaning:
+//     "“You can do that!” or “I feel strong!” Arm with tense biceps. Also used in connection with doing sports, e.g. at the gym."
+// }
+
+function createEntry(emojiTerm) {
+  return (
+    <Entry
+      key={emojiTerm.id}
+      emoji={emojiTerm.emoji}
+      name={emojiTerm.name}
+      description={emojiTerm.meaning}
+    />
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <h1>
+        <span>emojipedia</span>
+      </h1>
+      <dl className="dictionary">{emojipedia.map(createEntry)}</dl>
+    </div>
+  );
+}
+
+export default App;
+
+---------------------------------------------------------------------------------
+// var numbers = [3, 56, 2, 48, 5];
+
+//Map -Create a new array by doing something with each item in an array.
+
+// function double(x) {
+//   return x * 2;
+// }
+// const newNumbers = numbers.map(double);
+
+// var newNumbers = [];
+// numbers.forEach(function (x) {
+//   newNumbers.push(x * 2);
+// });
+
+// const newNumbers = numbers.map(function (x) {
+//   return x * 2;
+// });
+
+// console.log(newNumbers);
+
+//Filter - Create a new array by keeping the items that return true.
+
+// const newNumbers = numbers.filter(function(num) {
+//   return num < 10;
+// });
+
+// var newNumbers = [];
+// numbers.forEach(function(num) {
+//   if (num < 10) {
+//     newNumbers.push(num);
+//   }
+// })
+
+//Reduce - Accumulate a value by doing something to each item in an array.
+
+// var newNumber = numbers.reduce(function (accumulator, currentNumber) {
+//   console.log("accumulator = " + accumulator);
+//   console.log("currentNumber = " + currentNumber);
+//     return accumulator + currentNumber;
+// })
+
+// var newNumber = 0;
+// numbers.forEach(function (currentNumber) {
+//   newNumber += currentNumber
+// })
+
+//Find - find the first item that matches from an array.
+
+// const newNumber = numbers.find(function (num) {
+//   return num > 10;
+// })
+
+// console.log(newNumber);
+
+//FindIndex - find the index of the first item that matches.
+
+// const newNumber = numbers.findIndex(function (num) {
+//   return num > 10;
+// })
+
+// console.log(newNumber);
+
+//Challenge Solution
+import emojipedia from "./emojipedia";
+
+const newEmojipedia = emojipedia.map(function(emojiEntry) {
+  return emojiEntry.meaning.substring(0, 100);
+});
+
+console.log(newEmojipedia);
+
+---------------------------------------------------------------------------------
+import React from "react";
+import Entry from "./Entry";
+import emojipedia from "../emojipedia";
+
+function App() {
+  return (
+    <div>
+      <h1>
+        <span>emojipedia</span>
+      </h1>
+      <dl className="dictionary">
+        {emojipedia.map(emojiTerm => (
+          <Entry
+            key={emojiTerm.id}
+            emoji={emojiTerm.emoji}
+            name={emojiTerm.name}
+            description={emojiTerm.meaning}
+          />
+        ))}
+      </dl>
+    </div>
+  );
+}
+
+export default App;
+
+---------------------------------------------------------------------------------
+import React from "react";
+import Login from "./Login";
+
+var isLoggedIn = false;
+const currentTime = new Date(2023, 1, 6, 17).getHours();
+
+function App() {
+  return (
+    <div className="container">
+      {
+        isLoggedIn ? <h1>Hello</h1> : <Login />
+        // currentTime > 12 && <h1>Working?</h1>
+      }
+    </div>
+  );
+}
+export default App;
+
+import React from "react";
+import Input from "./Input";
+function Login() {
+  return (
+    <form className="form">
+      <Input type="text" placeholder="Username" />
+      <Input type="password" placeholder="password" />
+      <button type="submit">Login</button>
+    </form>
+  );
+}
+export default Login;
+
+import React from "react";
+function Input(props) {
+  return <input type={props.type} placeholder={props.placeholder} />;
+}
+export default Input;
+---------------------------------------------------------------------------------
+Form:
+import React from "react";
+
+function Form(props) {
+  return (
+    <form className="form">
+      <input type="text" placeholder="Username" />
+      <input type="password" placeholder="Password" />
+      {!props.isRegistered && (
+        <input type="password" placeholder="Confirm Password" />
+      )}
+
+      <button type="submit">{props.isRegistered ? "Login" : "Register"}</button>
+    </form>
+  );
+}
+
+export default Form;
+
+App:
+import React from "react";
+import Form from "./Form";
+
+var userIsRegistered = true;
+
+function App() {
+  return (
+    <div className="container">
+      <Form isRegistered={userIsRegistered} />
+    </div>
+  );
+}
+
+export default App;
+
+---------------------------------------------------------------------------------
+import React from "react";
+
+var isDone = false;
+
+function strike() {
+  isDone = true;
+}
+
+function unStrike() {
+  isDone = false;
+}
+
+function App() {
+  return (
+    <div>
+      <p style={isDone ? { textDecoration: "line-through" } : null}>Buy milk</p>
+      <button onClick={strike}>Change to strike through</button>
+      <button onClick={unStrike}>Change back</button>
+    </div>
+  );
+}
+
+export default App;
+
+---------------------------------------------------------------------------------
+import React, { useState } from "react";
+
+function App() {
+  const [count, setCount] = useState(10);
+
+  function increase() {
+    setCount(count + 1);
+  }
+  function decrease() {
+    setCount(count - 1);
+  }
+
+  return (
+    <div className="container">
+      <h1>{count}</h1>
+      <button onClick={increase}>+</button>
+      <button onClick={decrease}>-</button>
+    </div>
+  );
+}
+export default App;
+
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/App";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+
+---------------------------------------------------------------------------------
+import React, { useState } from "react";
+
+function App() {
+  setInterval(showTime, 1000);
+
+  const now = new Date().toLocaleTimeString();
+  const [time, setTime] = useState(now);
+  function showTime() {
+    const newTime = new Date().toLocaleTimeString();
+    setTime(newTime);
+  }
+
+  return (
+    <div className="container">
+      <h1>{time}</h1>
+      <button onClick={showTime}>Get Time</button>
+    </div>
+  );
+}
+
+export default App;
+
+---------------------------------------------------------------------------------
+data.js:
+const animals = [
+  {
+    name: "cat",
+    sound: "meow",
+    feedingRequirements: {
+      food: 2,
+      water: 3
+    }
+  },
+  { name: "dog", sound: "woof" }
+];
+
+function useAnimals(animal) {
+  return [
+    animal.name,
+    function() {
+      console.log(animal.sound);
+    }
+  ];
+}
+
+export default animals;
+export { useAnimals };
+
+index.js:
+import animals, { useAnimals } from "./data";
+
+//Destructuring Arrays
+// console.log(animals);
+const [cat, dog] = animals;
+// console.log(cat);
+
+const [animal, makeSound] = useAnimals(cat);
+console.log(animal);
+makeSound();
+
+//Destructuring Objects
+// const { name, sound} = cat;
+// const { name: catName, sound: catSound } = cat;
+// const { name = "Fluffy", sound = "Purr" } = cat;
+// const {feedingRequirements: {food, water} } = cat;
+// console.log(food)
+
+---------------------------------------------------------------------------------
+index.js:
+// CHALLENGE: uncomment the code below and see the car stats rendered
+import React from "react";
+import ReactDOM from "react-dom";
+import cars from "./practice";
+
+const [honda, tesla] = cars;
+const {
+  speedStats: { topSpeed: hondaTopSpeed },
+} = honda;
+const {
+  speedStats: { topSpeed: teslaTopSpeed },
+} = tesla;
+const {
+  coloursByPopularity: [hondaTopColour],
+} = honda;
+const {
+  coloursByPopularity: [teslaTopColour],
+} = tesla;
+
+ReactDOM.render(
+  <table>
+    <tr>
+      <th>Brand</th>
+      <th>Top Speed</th>
+      <th>Top Colour</th>
+    </tr>
+    <tr>
+      <td>{tesla.model}</td>
+      <td>{teslaTopSpeed}</td>
+      <td>{teslaTopColour}</td>
+    </tr>
+    <tr>
+      <td>{honda.model}</td>
+      <td>{hondaTopSpeed}</td>
+      <td>{hondaTopColour}</td>
+    </tr>
+  </table>,
+  document.getElementById("root")
+);
+
+---------------------------------------------------------------------------------
+import React, { useState } from "react";
+
+function App() {
+  const [headingText, setHeadingText] = useState("Hello");
+  const [mouseOver, setMouse] = useState(false);
+  function handleClick() {
+    setHeadingText("Submitted");
+  }
+  function handleMouseOver() {
+    setMouse(true);
+  }
+  function handleMouseOut() {
+    setMouse(false);
+  }
+  return (
+    <div className="container">
+      <h1>{headingText}</h1>
+      <input type="text" placeholder="What's your name?" />
+      <button
+        style={{ backgroundColor: mouseOver ? "black" : "white" }}
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+        onClick={handleClick}
+      >
+        Submit
+      </button>
+    </div>
+  );
+}
+
+export default App;
+
+---------------------------------------------------------------------------------
+import React, { useState } from "react";
+
+function App() {
+  const [name, setName] = useState("");
+  const [headingText, setHeading] = useState("");
+  function click() {
+    setHeading(name);
+  }
+  function change(event) {
+    setName(event.target.value);
+  }
+  return (
+    <div className="container">
+      <h1>Hello {headingText} </h1>
+      <input
+        onChange={change}
+        type="text"
+        placeholder="What's your name?"
+        value={name}
+      />
+      <button onClick={click}>Submit</button>
+    </div>
+  );
+}
+
+export default App;
+---------------------------------------------------------------------------------
+import React, { useState } from "react";
+
+function App() {
+  const [fullName, setFullName] = useState({
+    fName: "",
+    lName: "",
+  });
+  function handleChange(event) {
+    const { value, name } = event.target;
+    setFullName((prevValue) => {
+      if (name === "fName") {
+        return {
+          fName: value,
+          lName: prevValue.lName,
+        };
+      } else if (name === "lName") {
+        return {
+          fName: prevValue.fName,
+          lName: value,
+        };
+      }
+    });
+  }
+  return (
+    <div className="container">
+      <h1>
+        Hello {fullName.fName} {fullName.lName}
+      </h1>
+      <form>
+        <input
+          name="fName"
+          onChange={handleChange}
+          placeholder="First Name"
+          value={fullName.fName}
+        />
+        <input
+          name="lName"
+          onChange={handleChange}
+          placeholder="Last Name"
+          value={fullName.lName}
+        />
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+}
+
+export default App;
+
+---------------------------------------------------------------------------------
+import React, { useState } from "react";
+
+function App() {
+  const [contact, setContact] = useState({
+    fName: "",
+    lName: "",
+    email: "",
+  });
+  function handleChange(event) {
+    const { value, name } = event.target;
+    setContact((prevValue) => {
+      if (name === "fName") {
+        return {
+          fName: value,
+          lName: prevValue.lName,
+          email: prevValue.email,
+        };
+      } else if (name === "lName") {
+        return {
+          fName: prevValue.fName,
+          lName: value,
+          email: prevValue.email,
+        };
+      } else if (name === "email") {
+        return {
+          fName: prevValue.fName,
+          lName: prevValue.lName,
+          email: value,
+        };
+      }
+    });
+  }
+
+  return (
+    <div className="container">
+      <h1>
+        Hello {contact.fName} {contact.lName}
+      </h1>
+      <p>{contact.email}</p>
+      <form>
+        <input
+          name="fName"
+          onChange={handleChange}
+          placeholder="First Name"
+          value={contact.fName}
+        />
+        <input
+          name="lName"
+          onChange={handleChange}
+          placeholder="Last Name"
+          value={contact.lName}
+        />
+        <input
+          name="email"
+          onChange={handleChange}
+          placeholder="Email"
+          value={contact.email}
+        />
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+}
+
+export default App;
+
+---------------------------------------------------------------------------------
+index.js:
+const citrus = ["Lime", "Lemon", "Orange"];
+const fruits = ["Apple", ...citrus, "Banana", "Coconut"];
+console.log(fruits);
+
+const fullName = {
+  fName: "James",
+  lName: "Bond",
+};
+
+const user = {
+  ...fullName,
+  id: 1,
+  username: "jamesbond007",
+};
+
+console.log(user);
+
+App.js:
+import React, { useState } from "react";
+
+function App() {
+  const [contact, setContact] = useState({
+    fName: "",
+    lName: "",
+    email: "",
+  });
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    setContact((prevValue) => {
+      return { ...prevValue, [name]: value };
+    });
+  }
+
+  return (
+    <div className="container">
+      <h1>
+        Hello {contact.fName} {contact.lName}
+      </h1>
+      <p>{contact.email}</p>
+      <form>
+        <input
+          onChange={handleChange}
+          name="fName"
+          value={contact.fName}
+          placeholder="First Name"
+        />
+        <input
+          onChange={handleChange}
+          name="lName"
+          value={contact.lName}
+          placeholder="Last Name"
+        />
+        <input
+          onChange={handleChange}
+          name="email"
+          value={contact.email}
+          placeholder="Email"
+        />
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+}
+
+export default App;
+
+---------------------------------------------------------------------------------
+import React, { useState } from "react";
+
+function App() {
+  const [inputText, setInputText] = useState("");
+  const [items, setItems] = useState([]);
+  function handleChange(event) {
+    const newValue = event.target.value;
+    setInputText(newValue);
+  }
+  function addItem() {
+    setItems((prevItems) => {
+      return [...prevItems, inputText];
+    });
+    setInputText("");
+  }
+  return (
+    <div className="container">
+      <div className="heading">
+        <h1>To-Do List</h1>
+      </div>
+      <div className="form">
+        <input onChange={handleChange} type="text" value={inputText} />
+        <button onClick={addItem}>
+          <span>Add</span>
+        </button>
+      </div>
+      <div>
+        <ul>
+          {items.map((item) => (
+            <li>{item} </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+---------------------------------------------------------------------------------
+import React, { useState } from "react";
+
+function ToDoItem(props) {
+  const [isDone, setIsDone] = useState(false);
+  function handleClick() {
+    setIsDone((prevValue) => {
+      return !prevValue;
+    });
+  }
+  return (
+    <div onClick={handleClick}>
+      <li style={{ textDecoration: isDone ? "line-through" : "none" }}>
+        {props.text}
+      </li>
+    </div>
+  );
+}
+export default ToDoItem;
+
+import React, { useState } from "react";
+import ToDoItem from "./ToDoItem";
+
+function App() {
+  const [inputText, setInputText] = useState("");
+  const [items, setItems] = useState([]);
+
+  function handleChange(event) {
+    const newValue = event.target.value;
+    setInputText(newValue);
+  }
+
+  function addItem() {
+    setItems((prevItems) => {
+      return [...prevItems, inputText];
+    });
+    setInputText("");
+  }
+
+  return (
+    <div className="container">
+      <div className="heading">
+        <h1>To-Do List</h1>
+      </div>
+      <div className="form">
+        <input onChange={handleChange} type="text" value={inputText} />
+        <button onClick={addItem}>
+          <span>Add</span>
+        </button>
+      </div>
+      <div>
+        <ul>
+          {items.map((todoItem) => (
+            <ToDoItem text={todoItem} />
+          ))}
+        </ul>
+      </div>
+      ;
+    </div>
+  );
+}
+
+export default App;
+
+---------------------------------------------------------------------------------
+App.jsx:
+import React, { useState } from "react";
+import ToDoItem from "./ToDoItem";
+
+function App() {
+  const [inputText, setInputText] = useState("");
+  const [items, setItems] = useState([]);
+
+  function handleChange(event) {
+    const newValue = event.target.value;
+    setInputText(newValue);
+  }
+
+  function addItem() {
+    setItems((prevItems) => {
+      return [...prevItems, inputText];
+    });
+    setInputText("");
+  }
+  function deleteItem(id) {
+    setItems((prevItems) => {
+      return prevItems.filter((item, index) => {
+        return index !== id;
+      });
+    });
+  }
+  return (
+    <div className="container">
+      <div className="heading">
+        <h1>To-Do List</h1>
+      </div>
+      <div className="form">
+        <input onChange={handleChange} type="text" value={inputText} />
+        <button onClick={addItem}>
+          <span>Add</span>
+        </button>
+      </div>
+      <div>
+        <ul>
+          {items.map((todoItem, index) => (
+            <ToDoItem
+              key={index}
+              id={index}
+              text={todoItem}
+              onChecked={deleteItem}
+            />
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+todo.jsx:
+import React from "react";
+
+function ToDoItem(props) {
+  return (
+    <div
+      onClick={() => {
+        props.onChecked(props.id);
+      }}
+    >
+      <li>{props.text}</li>
+    </div>
+  );
+}
+export default ToDoItem;
+
+---------------------------------------------------------------------------------
+InputArea.jsx:
+import React, { useState } from "react";
+
+function InputArea(props) {
+  const [inputText, setInputText] = useState("");
+
+  function handleChange(event) {
+    const newValue = event.target.value;
+    setInputText(newValue);
+  }
+
+  return (
+    <div className="form">
+      <input onChange={handleChange} type="text" value={inputText} />
+      <button
+        onClick={() => {
+          props.onAdd(inputText);
+          setInputText("");
+        }}
+      >
+        <span>Add</span>
+      </button>
+    </div>
+  );
+}
+
+export default InputArea;
+
+ToDoItem.jsx:
+import React from "react";
+
+function ToDoItem(props) {
+  return (
+    <div
+      onClick={() => {
+        props.onChecked(props.id);
+      }}
+    >
+      <li>{props.text}</li>
+    </div>
+  );
+}
+
+export default ToDoItem;
+
+App.jsx:
+import React, { useState } from "react";
+import ToDoItem from "./ToDoItem";
+import InputArea from "./InputArea";
+
+function App() {
+  const [items, setItems] = useState([]);
+
+  function addItem(inputText) {
+    setItems((prevItems) => {
+      return [...prevItems, inputText];
+    });
+  }
+
+  function deleteItem(id) {
+    setItems((prevItems) => {
+      return prevItems.filter((item, index) => {
+        return index !== id;
+      });
+    });
+  }
+
+  return (
+    <div className="container">
+      <div className="heading">
+        <h1>To-Do List</h1>
+      </div>
+      <InputArea onAdd={addItem} />
+      <div>
+        <ul>
+          {items.map((todoItem, index) => (
+            <ToDoItem
+              key={index}
+              id={index}
+              text={todoItem}
+              onChecked={deleteItem}
+            />
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+---------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------
+import React from "react";
+import Header from "./Header";
+import Footer from "./Footer";
+import Note from "./Note";
+import notes from "../notes";
+
+function App() {
+  return (
+    <div>
+      <Header />
+      {notes.map(noteItem => (
+        <Note
+          key={noteItem.key}
+          title={noteItem.title}
+          content={noteItem.content}
+        />
+      ))}
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
+
+---------------------------------------------------------------------------------
